@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BaoBao MiMi Smile ^o^</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="../../assets/js/html5shiv.js"></script>
+          <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+        <style type="text/css">
+            body {
+                background: url("img/pattern_2.jpg");
+            }
+            #page_wrapper {
+                height: 100%;
+                padding: 2px 10px 10px;
+                background-color: white;
+                box-shadow: 0px 0px 15px #7f8c8d;
+            }
+            #banner {
+                position: fixed;
+            }
+            #widget {
+                margin-top: 60px;
+            }
+            #widget span {
+                font-weight: bold;
+                font-style: italic;
+                color: #1abc9c;
+            }
+            .img-polaroid {
+                transition: all 0.5s;
+                -webkit-transition: all 0.5s; /* Safari */
+                -moz-transition: all 0.5s; /* Firefox */
+                -ms-transition: all 0.5s; /* IE */
+                -o-transition: all 0.5s; /* Opera */
+            }
+        </style>
+    </head>
+    <body>
+        <div id="page_wrapper" class="container">
+            <div class="container" id="home_hero">
+                <div class="hero-unit">
+                    <h1>Welcome! to the Xiao Mi Mi gift sender</h1>
+                    <p> --- a special gift for BaoBao's birthday, from BeiBei. Enjoy! </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" id="startit">
+                          Let's get started!
+                        </a>
+                    </p>
+                    <em>
+                        By the way, I can only use English, because the tool I am using to create the small thing does not support Chinese input. I am sorry about this. Sigh~~~
+                    </em>
+                </div>
+                <div style="text-align:center;margin-bottom:30px;">
+                    <img src="img/love_you_kitty-wide.jpg" width="60%" class="img-polaroid">
+                </div>
+            </div>
+
+            <div class="container" id="banner" style="display:none;">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <a class="brand" href="baobao_mimi_smile.html"><img src="img/logo.jpg" width="30px"></a>
+                        <ul class="nav pull-right">
+                            <li><a href="mailto:510405893@qq.com">Like it? Tell BeiBei!</a></li>
+                            <li><a href="mailto:510405893@qq.com">Win? send me the screenshot!</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" id="widget" style="display:none;">
+                <div class="well well-small">
+                    <p class="lead">So, this is how it works...</p>
+                    <ol>
+                        <li>
+                            Click the "START" button below to begin the game, then the three kitty images will be randomly shuffled among all the images I prepared for you.  
+                        </li>
+                        <li>
+                            If all of them are the same, Mimi will win, and the reward is a chance to ask BeiBei to realize one of your wishes. Haha ^o^
+                        </li>
+                        <li>
+                            And if only two of them are the same, none of us wins. But you will enjoy all the warm memories of our happy times and get a chance to play it again~~ -_-||| 
+                        </li>
+                        <li>
+                            And if all of the images are different, then haha, BeiBei will win. And the reward is <span>a kiss</span> from MiMi. LOL!!!!  
+                        </li>
+                    </ol>
+                    <h5>Pretty simple, right? Let's get started!</h5>
+                </div>
+                <div class="row" id="imageContainer">
+                    <div class="span4">
+                        <img src="img/hello_kitty_pixel.jpg" class="img-polaroid" id="target_1">
+                    </div>
+                    <div class="span4">
+                        <img src="img/hello_kitty_pixel.jpg" class="img-polaroid" id="target_2">
+                    </div>
+                    <div class="span4">
+                        <img src="img/hello_kitty_pixel.jpg" class="img-polaroid" id="target_3">
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;margin-top:20px;">
+                    <button class="btn btn-success btn-large center" id="shuffle">START!</button>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jQuery_v1_10_1.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            $(function() {
+                $('#startit').click(function(){
+                    $('#home_hero').slideUp("slow", function() {
+                        $('#banner').slideDown("slow", function() {
+                            $('#widget').show("slow");
+                        });    
+                    });
+                });
+
+                // shuffle
+                $('#shuffle').click(function() {
+                    for (var i = 1; i <= 3; i++) {
+                        var itemID = "#target_" + i; 
+                        setImageURL(itemID);
+                    };
+
+                    $('#imageContainer').css("height","450px");
+                    // if ()
+                    $(this).html("One more!");
+                });
+
+                function setImageURL(target) {
+                    $( target ).fadeOut("slow",function() {
+                        $(this).prop("src","img/photo_" +  pad2((Math.floor((Math.random()*10) + 1) + Math.floor((Math.random()*10) + 1))) + ".jpg").fadeIn("slow");
+                    })
+                };
+
+                function pad2(number) {
+                    return (number < 10 ? '0' : '') + number
+                }
+            });
+        </script>
+    </body>
+</html>
